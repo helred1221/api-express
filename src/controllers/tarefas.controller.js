@@ -6,6 +6,11 @@ export function listar(req, res) {
 }
 
 export function criar(req, res) {
-  const tarefa = service.criar(req.body);
-  res.status(201).json(tarefa);
+  try {
+    const tarefa = service.criar(req.body);
+    res.status(201).json(tarefa);
+  } catch (error) {
+    res.status(400).json({error: 'Body vazio, é necessário que haja informações para serem enviadas.'});
+    throw new Error(error);
+  }
 }
