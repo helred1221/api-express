@@ -29,9 +29,9 @@ export async function conectar() {
   return db;
 }
 
-// Retorna a coleção "tarefas". Cada documento dela é uma tarefa.
-export function colecaoTarefas() {
-  return db.collection('tarefas');
+// Retorna o banco conectado. Os models usam esta função para acessar as coleções.
+export function obterBanco() {
+  return db;
 }
 
 export async function desconectar() {
