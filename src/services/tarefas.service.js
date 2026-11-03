@@ -1,5 +1,5 @@
 // src/services/tarefas.service.js
-import { colecaoTarefas } from '../config/database.js';
+import * as model from '../models/tarefas.model.js';
 
 export class ErroDeValidacao extends Error {
   constructor(mensagem) {
@@ -19,8 +19,7 @@ function paraFormatoDaApi(documento) {
 }
 
 export async function listar() {
-  // mongosh: db.tarefas.find()
-  const documentos = await colecaoTarefas().find().toArray();
+  const documentos = await model.buscarTodas();
   return documentos.map(paraFormatoDaApi);
 }
 
@@ -29,7 +28,6 @@ export async function criar({ titulo }) {
     throw new ErroDeValidacao('O título deve ter ao menos 3 caracteres.');
   }
   const novaTarefa = { titulo: titulo.trim(), concluida: false };
-  // mongosh: db.tarefas.insertOne({ titulo: "Estudar", concluida: false })
-  const resultado = await colecaoTarefas().insertOne(novaTarefa);
-  return paraFormatoDaApi({ _id: resultado.insertedId, ...novaTarefa });
+  const insertedId = await model.inserir(novaTarefa);
+  return paraFormatoDaApi({ _id: insertedId, ...novaTarefa });
 }
