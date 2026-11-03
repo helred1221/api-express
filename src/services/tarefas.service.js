@@ -8,8 +8,7 @@ export class ErroDeValidacao extends Error {
   }
 }
 
-// O MongoDB guarda o identificador em `_id` (ObjectId). A API expõe `id` como texto,
-// e é isso que este formato devolve.
+// O MongoDB guarda o identificador em `_id` (ObjectId). A API expõe `id` como texto, e é isso que este formato devolve.
 function paraFormatoDaApi(documento) {
   return {
     id: documento._id.toHexString(),

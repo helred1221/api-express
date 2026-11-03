@@ -1,7 +1,6 @@
 // src/models/tarefas.model.js
 // Model: é a única camada que fala com o MongoDB, usando as funções do driver
-// (find, insertOne, updateOne, deleteOne...). O service chama estas funções
-// e cuida das regras de negócio.
+// (find, insertOne, updateOne, deleteOne...). O service chama estas funções e cuida das regras de negócio.
 import { ObjectId } from 'mongodb';
 import { obterBanco } from '../config/database.js';
 
@@ -16,8 +15,7 @@ export async function buscarTodas() {
 }
 
 export async function buscarPorId(id) {
-  // ObjectId.isValid confere o formato antes da consulta. Um id inválido
-  // retorna null em vez de gerar erro.
+  // ObjectId.isValid confere o formato antes da consulta. Um id inválido retorna null em vez de gerar erro.
   if (!ObjectId.isValid(id)) {
     return null;
   }
