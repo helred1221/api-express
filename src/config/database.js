@@ -34,11 +34,6 @@ export function obterBanco() {
   return db;
 }
 
-// Retorna a coleção "tarefas". Cada documento dela é uma tarefa.
-export function colecaoTarefas() {
-  return db.collection('tarefas');
-}
-
 export async function desconectar() {
   if (client) {
     await client.close();
