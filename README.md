@@ -106,8 +106,10 @@ api-express/
 │   │   └── tarefas.controller.js    # Trata requisição e resposta HTTP
 │   ├── config/
 │   │   └── database.js              # Conexão única com o MongoDB
+│   ├── models/
+│   │   └── tarefas.model.js         # Operações de banco na coleção de tarefas
 │   └── services/
-│       └── tarefas.service.js       # Regras de negócio e acesso à coleção de tarefas
+│       └── tarefas.service.js       # Regras de negócio (validação e formato da resposta)
 ├── .env.example
 ├── package.json
 └── package-lock.json
@@ -117,7 +119,8 @@ A separação segue a arquitetura em camadas:
 
 1. **Routes** – mapeia método e caminho para um controller.
 2. **Controllers** – lê a requisição, chama o service e monta a resposta.
-3. **Services** – valida os dados e acessa a coleção `tarefas` no MongoDB.
+3. **Services** – valida os dados e aplica as regras de negócio.
+4. **Models** – único lugar que acessa o MongoDB (`find`, `insertOne`, `updateOne`, `deleteOne`).
 
 ## Endpoints
 
