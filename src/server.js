@@ -1,4 +1,5 @@
 // src/server.js
+import 'dotenv/config';
 import app from './app.js';
 import { conectar, desconectar } from './config/database.js';
 
